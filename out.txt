@@ -1,12 +1,4 @@
-import pyvista as pv
-import numpy as np
 
-cloud = np.array([
-    [31,36,21],
-    [31,37,22],
-    [32,37,23],
-    [31,37,24],
-    
 [29.683888888888887,34.989444444444445,21.0],
 [29.686944444444446,34.980000000000004,21.0],
 [29.6975,34.98027777777778,21.0],
@@ -2943,26 +2935,3 @@ cloud = np.array([
 [31.345555555555553,34.92611111111111,23.0],
 [31.345555555555553,34.92611111111111,23.0],
 [31.345555555555553,34.92611111111111,23.0],
-])
-
-print(np.min(cloud))
-def tocoords(N):
-    return N[0]+N[1]/60+N[2]/60/60
-
-relpoints = np.array([
-    [tocoords([29,32,42]),tocoords([34,58,24]),0],
-    [tocoords([31,17,4]),tocoords([34,15,27]),0],
-    [tocoords([31,33,43]),tocoords([34,30,22]),0]
-])
-
-plt = np.array(cloud,copy=True)
-for i in range(plt.shape[0]):
-    plt[i,2] = 0
-plote = pv.Plotter()
-plote.add_points(plt,scalars=cloud[:, 2],
-    render_points_as_spheres=True,
-    point_size=20,
-    show_scalar_bar=False,)
-plote.add_points(relpoints,color = "red",render_points_as_spheres=True,
-    point_size=30,)
-plote.show()
