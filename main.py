@@ -10,12 +10,15 @@ def sanitize_pos(stri: str):
     #print(stri)
     stri.strip()
     #print(stri)
-    split = stri.find("km")
+    split = stri.find("m")
+    stri = stri[split+2:-1]
+    split = stri.find("m")
     stri = stri[split+2:split+24]
     #print(stri)
     try:
-        N = [int(stri[0:3]),int(stri[3:6]),int(stri[7:9])]
-        E = [int(stri[12:14]),int(stri[15:17]),int(stri[18:20])]
+        #print(int(stri[17:19]))
+        N = [int(stri[0:2]),int(stri[2:5]),int(stri[6:8])]
+        E = [int(stri[11:13]),int(stri[14:16]),int(stri[17:19])]
     except:
         return (0,0)
     #print(N)
@@ -47,6 +50,7 @@ while True:
     date = ocr_reader.read_nearby((1600,1380))
     (x,y) = sanitize_pos(coords.as_string())
     date = sanitize_date(date.as_string())
+    #print(x,y,date)
     if x!=0 and y!= 0 and date != 0 and lastx != x and lasty !=y and lastdate!=date:
         print("[",x,",",y,",",float(date),"],")
         lastx = x
